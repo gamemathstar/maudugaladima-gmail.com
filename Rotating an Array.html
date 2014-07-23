@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<title>
+			Rotating an Array
+		</title>
+		<script>
+			function rotate_by(anyArray,shiftBy){
+				temp = [];
+				for( i = 0 ;i < anyArray.length; i++ ){
+					index =  (anyArray.length+i-shiftBy) >= anyArray.length?i-shiftBy:(anyArray.length+i-shiftBy);
+					temp[i] = anyArray[index];
+					
+				}
+				return temp;
+			}
+			ar = [1,2,3,4,5,6]
+			alert(rotate_by(ar,5));
+		</script>
+	</head>
+	<body>
+		<span id="bb"></span>
+
+	</body>
+</html>

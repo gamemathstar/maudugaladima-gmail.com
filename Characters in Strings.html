@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<title>
+			Characters in Strings
+		</title>
+		<script>
+			function find_charsNbyN(string1, string2){
+				finalString = "";
+				for ( i = 0; i < string1.length; i++) {
+					for ( j = 0; j < string2.length; j++) {
+						if (string1.charAt(i) == string2.charAt(j)) {
+							finalString += string1.charAt(i);
+							break;
+						}
+					}
+				}
+				return finalString;
+			}
+			 
+			function find_charsN(string1, string2){
+				finalString = "";
+				temp = [];
+				//this runs O(n) 
+				for(a = 0 ; a < string2.length ; a++){
+					if(temp[string2.charAt(a)+""]){
+						temp[string2.charAt(a)+""] += 1;
+					}else{
+						temp[string2.charAt(a)+""] = 1;
+					}
+				}
+				//this runs O(n) as well
+				for ( i = 0; i < string1.length; i++) {
+					if(temp[string1.charAt(i)+""]){
+						finalString += string1.charAt(i);
+					}
+				}
+				
+				//finally O(n) + O(n) = 2O(n) but { cO(n) is same as O(n) having c as a constant}
+				// so I could say my algorithm is n in this case
+				return finalString;
+			}
+			alert(find_charsN("keep","Bookkeeping"));
+		</script>
+	</head>
+	<body>
+		<span id="bb"></span>
+
+	</body>
+</html>

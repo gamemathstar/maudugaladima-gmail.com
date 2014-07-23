@@ -1,0 +1,79 @@
+<html>
+	<head>
+		<title>
+			String Tokenization
+		</title>
+		<script>
+		window.onload= function(){
+			
+			function tokenize_stringN(input_string, delimiter_list){
+				temp = 0;
+				assoc_arr = [];
+				main_arr = [];
+				var prev = false;
+				for( i = 0 ; i < delimiter_list.length; i++ ){
+					assoc_arr[delimiter_list[ i ]+""] = 1;
+					//console.log(delimiter_list[i]);
+				}
+				for(j = 0 ; j < input_string.length ; j++){
+					found = false;
+					if(assoc_arr[input_string.charAt(j)+""])
+						found = true;
+					if((found && input_string.substring(temp,i)!="") && prev){
+						main_arr.push(input_string.substring(temp,i).trim());
+						temp = i+1;
+					}
+					
+					if( (i ==input_string.length-1 && prev)){
+						main_arr.push(input_string.substring(temp).trim());
+					}
+					prev = !found;
+				}
+				return main_arr;
+			}
+			
+			function tokenize_string(input_string, delimiter_list){
+				temp = 0;
+				farr = [];
+				var prev = false;
+				//filter check to get the first element that is not a delimeter O(n2)
+				for( i = 0 ;i < delimiter_list.length; i++ ){
+					for( j = 0 ; j < input_string.length ; j++){
+						if(  delimiter_list[ i ] != input_string.charAt( j )){
+							temp = j;
+							break;
+						}
+					} 
+				}
+				//O(n2)
+				for( i = 0 ;i < input_string.length; i++ ){
+					found = false;
+					
+					for( j = 0 ; j < delimiter_list.length ; j++){
+						if(  delimiter_list[ j ] == input_string.charAt( i )){
+							found = true;
+							break;
+						}
+					} 
+					if((found && input_string.substring(temp,i)!="") && prev){
+						farr.push(input_string.substring(temp,i).trim());
+						temp = i+1;
+					}
+					
+					if( (i ==input_string.length-1 && prev)){
+						farr.push(input_string.substring(temp).trim());
+					}
+					prev = !found;
+					
+				}
+				return farr;
+			}//O(n2)+O(n2) = 2O(n2) = O(n2)
+			ar = [" ",",","."];
+			console.log(tokenize_stringN(".....How now, Mrs. Brown Cow.....",ar));
+			}
+		</script>
+	</head>
+	<body>
+	<p id="bb" ></p>
+	</body>
+</html>
